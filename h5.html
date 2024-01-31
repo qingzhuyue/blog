@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>登录</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="//unpkg.com/layui@2.8.11/dist/css/layui.css" rel="stylesheet">
+    <style>
+        .layui-row .login-icon {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .login-part {
+            text-align: center;
+        }
+
+        .login-part .login-form .input-loginid {
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ff5000;
+        }
+
+        .login-part .login-form p {
+            width: 96%;
+            /*padding-left: 5px;*/
+            margin-left: 8px;
+            margin-top: 10px;
+        }
+
+
+        .login-part .login-form .input-loginid .login-input {
+            font-size: 16px;
+            padding-left: 15px;
+            color: #111;
+
+            /*color: #000;*/
+            /*font-size: 17px;*/
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 100%;
+            /*padding: 2px 0;*/
+            border: 0;
+            background-color: transparent;
+            line-height: 1;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+
+        .fm-button {
+            background: -webkit-linear-gradient(left, #ff9000, #ff5000) no-repeat;
+            color: #fff;
+            box-shadow: 0 2px 4px #f7c7b1;
+            height: 45px;
+            border-radius: 35px;
+            margin-top: 25px;
+            font-size: 16px;
+            border: none;
+            width: 90%;
+            /*margin-top: 20px;*/
+        }
+
+        .fm-button-toup {
+            color: #ff5000;
+            background: white;
+            border: 1px solid #ff5000;
+            height: 45px;
+            border-radius: 35px;
+            margin-top: 25px;
+            font-size: 16px;
+            /*border: none;*/
+            width: 90%;
+        }
+
+        .layui-row .login-part .login-form-phone .input-loginid a {
+            position: absolute;
+            right: 10px;
+            margin-right: 24px;
+            color: #ff5000;
+        }
+
+        .registerpart .layui-row .login-part .register-form-phone .input-loginid div a {
+            /*!*position: absolute;*!*/
+            /*float: right;*/
+            /*display: inline-block;*/
+            /*!*padding-bottom: 10px;*!*/
+            /*!*right: 38px;*!*/
+            /*margin-right: 3%;*/
+            /*color: #ff5000;*/
+            height: 30px;
+            line-height: 30px;
+            border: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+            color: #ff5000;
+        }
+
+        .am-input-control {
+            font-size: 17px;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            display: inline;
+        }
+
+        .am-input-extra {
+            display: inline;
+            -webkit-box-flex: initial;
+            -ms-flex: initial;
+            flex: initial;
+            min-width: 0;
+            max-height: 21px;
+            overflow: hidden;
+            padding-right: 0;
+            line-height: 1;
+            color: #888;
+            font-size: 15px;
+            margin-left: 5px;
+        }
+
+        .registerpart .layui-row .login-part .register-form-phone .input-loginid {
+            border-bottom: 2px solid rgb(247, 247, 247);
+        }
+
+
+        /*注册模块*/
+        .layui-row .register .title {
+            margin-top: 20px;
+            font-size: 30px;
+            color: #333;
+        }
+
+        .layui-row .register .sub-title {
+            margin-top: 12px;
+            font-size: 16px;
+            color: #999;
+        }
+
+        .registerpart .layui-row .register {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--登录模块-->
+    <div class="layui-fluid loginpart">
+        <div class="layui-row">
+            <div class="login-icon">
+                <img src="https://profile-avatar.csdnimg.cn/068bb7948d2941d584efb796a79bb704_xuelian3015.jpg!2" style="width: 80px;height: 80px;" alt="">
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="login-part">
+                <!--            账号密码登录-->
+                <form id="login-form-usernamepwd" class="login-form login-form-usernamepwd" style="display: block">
+                    <div class="input-loginid">
+                        <input type="text" placeholder="请输入手机号" id="login-form-id" class="login-input">
+                    </div>
+
+                    <div class="input-loginid">
+                        <input type="password" placeholder="请输入密码" id="login-form-pwd" class="login-input">
+                    </div>
+
+                    <p>
+                        <a href="javascript:void(0)" onclick="smscodelogin()"><span
+                                style="float: left;">短信验证码登录</span></a>
+                        <a href="javascript:void(0)" onclick="freeregister()"><span style="float:right;">免费注册</span></a>
+                    </p>
+
+                    <div class="login-btn">
+                        <button type="submit" tabindex="3" onclick="loginbyusernamepwd()"
+                            class="fm-button fm-submit password-login">登录</button>
+                    </div>
+                </form>
+
+                <!--            短信验证登录-->
+                <form id="login-form-phone" class="login-form login-form-phone" style="display: none">
+                    <div class="input-loginid">
+                        <input type="text" placeholder="请输入手机号" id="login-form-phoneNumber" class="login-input">
+                    </div>
+
+                    <div class="input-loginid">
+                        <input type="password" placeholder="请输入短信验证码" id="login-form-smscode" class="login-input">
+                        <a href="javascript:void(0)" onclick="getsmscode()">获取验证码</a>
+                    </div>
+
+                    <p>
+                        <a href="javascript:void(0)" onclick="freeregister()"><span style="float: left;">免费注册</span></a>
+                    </p>
+
+                    <div class="login-btn">
+                        <button type="submit" tabindex="3" onclick="loginbycode()"
+                            class="fm-button fm-submit password-login">登录</button>
+                    </div>
+
+                    <div class="login-btn">
+                        <button type="submit" tabindex="3" onclick="usernamepwdlogin()"
+                            class="fm-button-toup fm-submit password-login">账号密码登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--注册模块-->
+    <div class="layui-fluid registerpart" style="display: none">
+        <div style="width: 80%;margin: 0 auto;">
+            <div class="layui-row">
+                <div class="register">
+                    <div class="title">手机号注册</div>
+                    <div class="sub-title">亲,欢迎注册账号</div>
+                </div>
+            </div>
+
+            <div class="layui-row">
+                <div class="login-part">
+
+                    <form id="register-form-phone" class="login-form register-form-phone">
+                        <div class="input-loginid">
+                            <input type="text" placeholder="请输入手机号" id="register-form-phoneNumber" class="login-input">
+                        </div>
+
+                        <div class="input-loginid" style="width: 100%;">
+                            <div class="am-input-control" style="float: left;width: 60%;">
+                                <input type="password" style="width: 100%" placeholder="请输入效验码"
+                                    id="register-form-smscode" class="login-input">
+                            </div>
+                            <div class="am-input-extra">
+                                <a href="javascript:void(0)" onclick="getregistersmscode()">获取验证码</a>
+                            </div>
+                        </div>
+
+                        <div class="login-btn">
+                            <button type="submit" tabindex="3" onclick="register()"
+                                class="fm-button fm-submit password-login">同意并注册</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//unpkg.com/layui@2.8.11/dist/layui.js"></script>
+    <!--下面这个commonjs.js你用不到删除即可-->
+    <!--<script src="../style/js/commonjs.js" charset="utf-8"></script>-->
+
+    <script>
+        //一般直接写在一个js文件中
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer
+                , form = layui.form;
+        });
+        var $;
+        window.onload = function () {
+            $ = layui.jquery;
+        }
+        function freeregister() {
+            console.log("开始免费注册");
+            $('.loginpart').css('display', 'none');
+            $('.registerpart').css('display', 'block');
+        }
+
+        function smscodelogin() {
+            //更改样式的精髓
+            $('.login-form-usernamepwd').css('display', 'none');
+            $('.login-form-phone').css('display', 'block');
+        }
+
+        function usernamepwdlogin() {
+            $('.login-form-usernamepwd').css('display', 'block');
+            $('.login-form-phone').css('display', 'none');
+        }
+
+        function loginbyusernamepwd() {
+            console.log("根据账号密码登录");
+        }
+
+        function loginbycode() {
+            console.log("根据短信验证码登录")
+        }
+
+        function getsmscode() {
+            console.log("获取登录模块的短信验证码")
+        }
+
+        function getregistersmscode() {
+            console.log("获取注册模块的验证码")
+        }
+
+        function register() {
+            console.log("注册成功，跳转至登录界面")
+            $('.registerpart').css('display', 'none');
+            $('.loginpart').css('display', 'block');
+
+        }
+    </script>
+</body>
+
+</html>
