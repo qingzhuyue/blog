@@ -2,7 +2,7 @@
  * @Author: qingzhuyue qingzhuyue@foxmail.com
  * @Date: 2024-02-04 12:41:09
  * @LastEditors: qingzhuyue qingzhuyue@foxmail.com
- * @LastEditTime: 2024-02-04 15:57:24
+ * @LastEditTime: 2024-03-24 14:55:00
  * @FilePath: /blog/javascript/promise.md
  * @Description: 
  * Copyright (c) 2024 by ${qingzhuyue} email: ${qingzhuyue@foxmail.com}, All Rights Reserved.
